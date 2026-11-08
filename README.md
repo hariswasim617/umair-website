@@ -21,7 +21,7 @@ All text, links and image paths live in **`src/data/content.js`**. You don't nee
 
 | What | How |
 | --- | --- |
-| Profile photo (hero + about) | Add your photo to `public/images/` (e.g. `umair.jpg`), then set `profile.image` / `profile.aboutImage` in `content.js` to `'/images/umair.jpg'`. A 4:5 portrait works best. |
+| Profile photo (hero + about) | Add your photo to `public/images/` (e.g. `umair.jpg`), then set `profile.image` / `profile.aboutImage` in `content.js` to `asset('/images/umair.jpg')`. A 4:5 portrait works best. |
 | Project thumbnails | Each project shows built-in artwork while `image: null`. Set `image: '/images/your-thumbnail.jpg'` to use a photo (3:2 works best). |
 | CV | Replace `public/cv/Muhammad-Umair-CV.pdf` with your real CV, keeping the same file name. |
 | Social preview | `public/og-image.png` (1200×630). |
@@ -42,9 +42,17 @@ VITE_CONTACT_ENDPOINT=https://formspree.io/f/your-id
 
 Rebuild, and the form will POST JSON (`name`, `email`, `subject`, `message`) to that endpoint and show a success or error message.
 
-## Deployment
+## Deployment (GitHub Pages)
 
-The `dist/` folder is a static site. Deploy it to Netlify, Vercel, GitHub Pages or any static host. After deploying, update the `og:image` / `twitter:image` tags in `index.html` to absolute URLs on your domain so link previews work everywhere.
+The site deploys automatically with `.github/workflows/deploy.yml` on every push to `main`. It can also be run by hand from the **Actions** tab.
+
+**One-time setup:** in the repository go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
+
+The live site is at **https://hariswasim617.github.io/umair-website/**.
+
+- The build uses the base path `/umair-website/`. Reference files in `public/` through `asset('/path')` in `content.js` so they resolve correctly.
+- For a custom domain, update the absolute URLs (canonical, `og:url`, `og:image`) in `index.html`. The workflow sets the base path from the Pages configuration automatically.
+- To make the contact form send directly, add a repository **variable** (Settings → Secrets and variables → Actions → Variables) named `VITE_CONTACT_ENDPOINT`.
 
 ## Project structure
 

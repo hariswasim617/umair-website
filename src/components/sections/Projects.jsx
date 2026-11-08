@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Check } from 'lucide-react'
-import { projects } from '../../data/content'
+import { asset, projects } from '../../data/content'
 import ProjectArt from '../art/ProjectArt'
 import { InstagramIcon, YoutubeIcon } from '../ui/BrandIcons'
 import { fadeUp, stagger } from '../ui/Reveal'
@@ -14,7 +14,7 @@ function Thumb({ project, className = '' }) {
     <div className={`relative overflow-hidden bg-ink-2 ${className}`}>
       <div className="size-full transition-transform duration-[1200ms] ease-out-expo group-hover/spot:scale-[1.06]">
         {project.image ? (
-          <img src={project.image} alt="" loading="lazy" decoding="async" className="size-full object-cover" />
+          <img src={/^https?:/.test(project.image) ? project.image : asset(project.image)} alt="" loading="lazy" decoding="async" className="size-full object-cover" />
         ) : (
           <ProjectArt name={project.art} />
         )}

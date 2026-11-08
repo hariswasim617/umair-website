@@ -2,13 +2,14 @@
   "name": "Muhammad Umair — Medical Student",
   "short_name": "M. Umair",
   "description": "Personal portfolio of Muhammad Umair, medical student and aspiring doctor from Lahore, Pakistan.",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#080B12",
   "theme_color": "#080B12",
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
   ]
 }
