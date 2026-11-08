@@ -7,10 +7,15 @@
  *
  *  REPLACING IMAGES
  *  1. Put your photo in /public/images (e.g. /public/images/umair.jpg)
- *  2. Change the path below (e.g. profile.image = '/images/umair.jpg')
+ *  2. Change the path below (e.g. image: asset('/images/umair.jpg'))
  *  Project cards show built-in artwork when `image` is null. Set `image`
  *  to a path in /public/images to use your own photograph instead.
+ *  Paths are written from the site root ('/images/…'); `asset()` adds the
+ *  GitHub Pages sub-path automatically, so keep using it for local files.
  */
+
+/** Resolves a /public file path against the deploy base (e.g. /umair-website/). */
+export const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
 
 export const profile = {
   name: 'Muhammad Umair',
@@ -30,11 +35,11 @@ export const profile = {
     { lead: 'Creativity', rest: 'is my expression.' },
   ],
   // Replace with your own photographs (see note at the top of this file).
-  image: '/images/profile-placeholder.svg',
-  aboutImage: '/images/profile-placeholder.svg',
+  image: asset('/images/profile-placeholder.svg'),
+  aboutImage: asset('/images/profile-placeholder.svg'),
   imageAlt: 'Portrait of Muhammad Umair',
   // Replace /public/cv/Muhammad-Umair-CV.pdf with your real CV (same file name).
-  cv: '/cv/Muhammad-Umair-CV.pdf',
+  cv: asset('/cv/Muhammad-Umair-CV.pdf'),
 }
 
 export const contact = {
