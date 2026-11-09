@@ -168,7 +168,7 @@ export default function Hero({ ready }) {
               animate={ready ? { opacity: 1, y: 0, scale: 1 } : undefined}
               transition={{ duration: 0.8, delay: 0.9 + i * 0.12, ease: EASE }}
             >
-              <div className="glass flex animate-float items-center gap-2 rounded-2xl px-3.5 py-2.5 text-xs font-medium text-fg shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)]" style={{ animationDelay: `${-delay}s` }}>
+              <div className="flex animate-float items-center gap-2 rounded-2xl border border-white/10 bg-ink-2/90 px-3.5 py-2.5 text-xs font-medium text-fg shadow-[0_10px_30px_-10px_rgba(0,0,0,0.7)] backdrop-blur-md" style={{ animationDelay: `${-delay}s` }}>
                 <span className="flex size-7 items-center justify-center rounded-lg bg-gradient-to-br from-accent/30 to-cyan/20 text-cyan">
                   <Ico className="size-3.5" aria-hidden="true" />
                 </span>
