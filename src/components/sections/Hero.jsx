@@ -32,7 +32,7 @@ export default function Hero({ ready }) {
   const state = ready ? 'show' : 'hidden'
 
   return (
-    <section id="home" aria-label="Introduction" className="relative isolate flex min-h-[100svh] items-center overflow-hidden pb-20 pt-32 sm:pt-36 lg:pb-24 lg:pt-28">
+    <section id="home" aria-label="Introduction" className="relative isolate flex min-h-[100svh] items-center overflow-hidden pb-20 pt-40 sm:pt-44 lg:pb-24 lg:pt-28">
       {/* Decorative layers */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,#000_30%,transparent_80%)]" />

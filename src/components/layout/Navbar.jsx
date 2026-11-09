@@ -16,6 +16,18 @@ export default function Navbar() {
   const close = useCallback(() => setOpen(false), [])
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 24, restDelta: 0.001 })
+  const tabsRef = useRef(null)
+
+  // Keep the active tab visible in the mobile tab strip (horizontal scroll only,
+  // so the page itself never jumps).
+  useEffect(() => {
+    const strip = tabsRef.current
+    const tab = strip?.querySelector('[aria-current="true"]')
+    if (!strip || !tab || strip.scrollWidth <= strip.clientWidth) return
+    const target = tab.offsetLeft - (strip.clientWidth - tab.offsetWidth) / 2
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    strip.scrollTo({ left: Math.max(0, target), behavior: reduce ? 'auto' : 'smooth' })
+  }, [active])
 
   // Lock page scroll while the mobile menu is open.
   useEffect(() => {
@@ -46,14 +58,14 @@ export default function Navbar() {
       />
       <header className="fixed inset-x-0 top-0 z-50 pt-3 sm:pt-4">
         <div className="container-x">
-          <nav
-            aria-label="Primary"
-            className={`flex h-16 items-center justify-between rounded-2xl pl-4 pr-2 transition-all duration-500 ease-out-expo sm:pl-5 ${
+          <div
+            className={`rounded-2xl border transition-all duration-500 ease-out-expo ${
               scrolled
-                ? 'border border-line bg-ink/70 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.6)] backdrop-blur-xl'
-                : 'border border-transparent bg-transparent'
+                ? 'border-line bg-ink/75 shadow-[0_10px_40px_-12px_rgba(0,0,0,0.6)] backdrop-blur-xl'
+                : 'border-transparent bg-ink/30 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-none'
             }`}
           >
+          <nav aria-label="Primary" className="flex h-16 items-center justify-between pl-4 pr-2 sm:pl-5">
             <a href="#home" className="rounded-lg" aria-label="Muhammad Umair — back to top">
               <Logo />
             </a>
@@ -104,6 +116,39 @@ export default function Navbar() {
               </button>
             </div>
           </nav>
+
+          {/* Phone & tablet: always-visible, horizontally scrollable section tabs */}
+          <nav aria-label="Sections" className="lg:hidden">
+            <ul
+              ref={tabsRef}
+              className="flex gap-1 overflow-x-auto px-2 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(90deg,transparent,#000_12px,#000_calc(100%-12px),transparent)]"
+            >
+              {navLinks.map((link) => {
+                const isActive = active === link.id
+                return (
+                  <li key={link.id} className="shrink-0">
+                    <a
+                      href={`#${link.id}`}
+                      aria-current={isActive ? 'true' : undefined}
+                      className={`relative flex min-h-9 items-center rounded-full px-3.5 text-[0.8125rem] font-medium transition-colors duration-300 ${
+                        isActive ? 'text-fg' : 'text-muted active:text-fg'
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-active-mobile"
+                          className="absolute inset-0 -z-10 rounded-full border border-cyan/25 bg-gradient-to-r from-accent/20 to-cyan/15"
+                          transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                        />
+                      )}
+                      {link.label}
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
+          </div>
         </div>
       </header>
 
