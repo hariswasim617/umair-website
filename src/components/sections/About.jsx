@@ -14,7 +14,7 @@ export default function About() {
         <div className="relative lg:col-span-5">
           <div className="lg:sticky lg:top-28">
             <Reveal className="relative mx-auto max-w-sm lg:max-w-none">
-              <Portrait src={profile.aboutImage} alt={profile.imageAlt} />
+              <Portrait src={profile.aboutImage} alt={profile.aboutImageAlt} />
               <motion.figure
                 className="glass absolute -bottom-8 -right-2 max-w-[15rem] rounded-2xl p-5 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.7)] sm:-right-8"
                 initial={{ opacity: 0, y: 20 }}

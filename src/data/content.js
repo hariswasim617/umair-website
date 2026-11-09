@@ -35,9 +35,10 @@ export const profile = {
     { lead: 'Creativity', rest: 'is my expression.' },
   ],
   // Replace with your own photographs (see note at the top of this file).
-  image: asset('/images/profile-placeholder.svg'),
-  aboutImage: asset('/images/profile-placeholder.svg'),
-  imageAlt: 'Portrait of Muhammad Umair',
+  image: asset('/images/umair-portrait.webp'),
+  aboutImage: asset('/images/umair-about.webp'),
+  imageAlt: 'Muhammad Umair in a light blue shirt, glancing to the side',
+  aboutImageAlt: 'Muhammad Umair seated outdoors in a beige shalwar kameez',
   // Replace /public/cv/Muhammad-Umair-CV.pdf with your real CV (same file name).
   cv: asset('/cv/Muhammad-Umair-CV.pdf'),
 }
